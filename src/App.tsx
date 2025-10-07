@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ChangeEvent, type ReactElement } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -75,7 +75,7 @@ function factorVotes(distances: number[], limit: number): Record<number, number>
   return votes;
 }
 
-function highlightOccurrences(text: string, gram: string): JSX.Element[] {
+function highlightOccurrences(text: string, gram: string): ReactElement[] {
   if (!gram) return [<span key="whole">{text}</span>];
   const out: JSX.Element[] = []; const n = gram.length;
   for (let i = 0; i < text.length;) { const chunk = text.slice(i, i + n); if (chunk === gram) { out.push(<mark key={i} className="rounded bg-yellow-200 px-0.5 py-0">{chunk}</mark>); i += n; } else { out.push(<span key={i}>{text[i]}</span>); i++; } }
@@ -209,7 +209,7 @@ export default function VigenereIoCKasiskiMiniApp() {
           <Card className="border-foreground/10">
             <CardHeader><CardTitle className="text-base">Ciphertext</CardTitle></CardHeader>
             <CardContent className="space-y-4">
-              <Textarea value={raw} onChange={(e) => setRaw(e.target.value)} placeholder="Paste your ciphertext here (any characters)." className="min-h-[140px]" />
+              <Textarea value={raw} onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setRaw(e.target.value)} placeholder="Paste your ciphertext here (any characters)." className="min-h-[140px]" />
               <div className="flex flex-wrap items-center gap-3">
                 <Button variant="secondary" onClick={() => setRaw(examplePaste)}>Paste sample</Button>
                 <Badge variant="outline" className="rounded-full">Original length: {raw.length}</Badge>
@@ -237,8 +237,8 @@ export default function VigenereIoCKasiskiMiniApp() {
               <CardHeader><CardTitle className="text-base">Repeated n‑grams</CardTitle></CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex flex-wrap items-center gap-4">
-                  <div className="flex items-center gap-3"><Label>n‑gram</Label><Slider className="w-40" value={[ngram]} min={3} max={6} step={1} onValueChange={(v) => setNgram(v[0])} /><Badge className="rounded-full">{ngram}</Badge></div>
-                  <div className="flex items-center gap-2"><Switch id="pair" checked={pairwise} onCheckedChange={setPairwise} /><Label htmlFor="pair">Use all pairs</Label></div>
+                  <div className="flex items-center gap-3"><Label>n‑gram</Label><Slider className="w-40" value={[ngram]} min={3} max={6} step={1} onValueChange={(v: number[]) => setNgram(v[0])} /><Badge className="rounded-full">{ngram}</Badge></div>
+                  <div className="flex items-center gap-2"><Switch id="pair" checked={pairwise} onCheckedChange={(checked: boolean) => setPairwise(checked)} /><Label htmlFor="pair">Use all pairs</Label></div>
                 </div>
                 <div className="max-h-64 overflow-auto rounded-lg border">
                   <table className="w-full text-sm">
@@ -261,8 +261,8 @@ export default function VigenereIoCKasiskiMiniApp() {
               <CardHeader><CardTitle className="text-base">Key‑length candidates (Kasiski votes)</CardTitle></CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <Label>Consider factors up to</Label><Slider className="w-40" value={[limitFactors]} min={10} max={40} step={1} onValueChange={(v) => setLimitFactors(v[0])} /><Badge className="rounded-full">{limitFactors}</Badge>
-                  <Label className="ml-4">Max K for charts</Label><Slider className="w-40" value={[maxK]} min={10} max={40} step={1} onValueChange={(v) => setMaxK(v[0])} /><Badge className="rounded-full">{maxK}</Badge>
+                  <Label>Consider factors up to</Label><Slider className="w-40" value={[limitFactors]} min={10} max={40} step={1} onValueChange={(v: number[]) => setLimitFactors(v[0])} /><Badge className="rounded-full">{limitFactors}</Badge>
+                  <Label className="ml-4">Max K for charts</Label><Slider className="w-40" value={[maxK]} min={10} max={40} step={1} onValueChange={(v: number[]) => setMaxK(v[0])} /><Badge className="rounded-full">{maxK}</Badge>
                 </div>
                 <div className="h-64">
                   <ResponsiveContainer width="100%" height="100%">
@@ -335,7 +335,7 @@ export default function VigenereIoCKasiskiMiniApp() {
 
               <div className="flex flex-wrap items-center gap-3">
                 <Label className="text-sm">Manual key</Label>
-                <Input value={manualKeyInput} onChange={(e) => setManualKeyInput(e.target.value)} placeholder="e.g., JACK" className="w-40" />
+                <Input value={manualKeyInput} onChange={(e: ChangeEvent<HTMLInputElement>) => setManualKeyInput(e.target.value)}placeholder="e.g., KEY" className="w-40" />
                 <Button size="sm" variant="secondary" onClick={applyManualKey}>Apply</Button>
                 <Button size="sm" variant="ghost" onClick={() => setKeyShifts(Array.from({ length: workingK }, () => null))}>Reset</Button>
                 <Badge variant="outline" className="rounded-full">Key: {keyString()}</Badge>
@@ -362,7 +362,7 @@ export default function VigenereIoCKasiskiMiniApp() {
                 <div className="md:col-span-3 space-y-3">
                   <div className="flex items-center gap-3">
                     <Label className="text-sm">Shift</Label>
-                    <Slider className="w-64" value={[keyShifts[colIndex] ?? 0]} min={0} max={25} step={1} onValueChange={(v) => setShiftFor(colIndex, v[0])} />
+                    <Slider className="w-64" value={[keyShifts[colIndex] ?? 0]} min={0} max={25} step={1} onValueChange={(v: number[]) => setShiftFor(colIndex, v[0])} />
                     <Badge className="rounded-full">{shiftToLetter(keyShifts[colIndex] ?? 0)} ({keyShifts[colIndex] ?? 0})</Badge>
                     <Button size="sm" variant="secondary" onClick={() => setShiftFor(colIndex, bestShift)}>Set best (χ²)</Button>
                   </div>
