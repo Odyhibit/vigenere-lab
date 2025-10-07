@@ -187,7 +187,31 @@ export default function VigenereIoCKasiskiMiniApp() {
 
   const preview = useMemo(() => decodePartial(raw, keyShifts, Math.max(1, workingK)), [raw, keyShifts, workingK]);
 
-  const examplePaste = `CVP{BCT34W!}KQJKFZQNZEXXQKQZZ...`;
+  const examplePaste = `QKYWBFZ 1. Ecrkpvha.
+
+Vooj tm Jaaadcs. Apux mhyya boh—bhtlz nqgr kmd tpvz ducjqtmem—kycqoo
+ewwrsm pz gc pmumz qg ab nbztm, tbg lvbiqgu syybjknzdp aw jvmsuczb nm
+hb vfvzf, Q mvrsnpu Q pcxjk abqe oembb b tbhwjl iol lsh rom ximsuw wisb
+ht wfl epzer. Lr pa b etm L fhdf wy rugcqoo hti rom txeshl hve
+zxuxjhbjvz hkc jqsknzdrpwo. Easqccms Q ywqb tgtmet jpvejvz uugt icwnh
+wfl upcmv; zflvfdxf lr pa b ltas, byqahem Qmcmnjxf ll tg twnz; zflvfdxf
+L dpve urghjm qodhzxlaisqem sybajvz phdvzf khtigu ebzxvrszmt, igr
+eppvhqgu xn apf zxou mm mwmkm isumsie W pclb; bvw svnlkjiezb uomomosu
+kf pzxhg jca avka oq swxfz aoqb vn nm, mvdr pb smjilpla b amfrln upztz
+sppvdqizh rv xsmosqr tm gzha gcsqcmkowcsg tbxdsguo jvmc wfl auzxsw, yul
+nmmvrbpkbtem nlvklqgu scvxmm’l vdrz wgn—mvhl, P idkhiqr pb iqzv wgtm uw
+zsw rv afi tg vmvv ba B qdl. Apja bg pw zccamwwsam gwk dlqawm igr eyst.
+Xqmv d noqmwlcsfpkbt yzrsyqtp Vowm apswpg kgtafty ismu pja lkrpk; Q
+rcbswjf bbsx hr rom tpbd. Wflzf ql brroqoo liunyqtqgu ll apja. Bt wflg
+ccm yqcd qu, iearqa imt fsq gu bimbf gcnzfm, lcpc aqnm hf rroms,
+kasugzp wmkm qchzmg mvh qhuf nxsoguot bhkdpka upx cfchv xqmv pc.
+
+Apfzx bru pa zwnf llzcmik qlrf wg bas Pyupbbmchq, immbxr umbve jr
+kkyydfa tg Llkqbv bgocz jz khfdj ymfnl—qrktmskx gxpywvvwg lr dqup asu
+qbzg. Zbukr hve txtw, rom tbkshrz bbsx mrs diumkkdpk. Qua xlwpluf
+lhkqrveo ql hkc iiubxfb, uomsm mvdr uwctx arjl qt etgkck jz etjhq, hve
+khcock jz jkshxla, xpbqk y mmx phiuq wzfdbcxq dmsm hiw mm ajoah rd
+siol. Ecri hb upx qumdlt wy kdrlz-hissuq apfzx.`;
 
   return (
     <div className="p-6 space-y-4 text-[15px]">
